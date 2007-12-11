@@ -59,7 +59,7 @@ Name=Terminal Server Client
 Comment=Frontend for rdesktop
 TryExec=%{name}
 Exec=tsclient
-Icon=%{name}.png
+Icon=%{name}
 Terminal=0
 Type=Application
 EOF
