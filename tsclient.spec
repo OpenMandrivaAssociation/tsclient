@@ -1,11 +1,11 @@
-%define	version		0.148
+%define	version		0.150
 
 Summary:  	Terminal Server Client is a frontend for rdesktop for the GNOME2 platform
 Name:     	tsclient
 Version:  	%{version}
 Release:  	%mkrel 1
 License: 	GPL
-Group:		Networking/Remote access 
+Group:		Networking/Remote access
 URL:		http://www.gnomepro.com/tsclient/
 
 Source:		%{name}-%{version}.tar.bz2
