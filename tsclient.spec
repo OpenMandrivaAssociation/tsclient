@@ -7,6 +7,7 @@ Release:  	%mkrel 1
 License: 	GPL
 Group:		Networking/Remote access
 URL:		http://www.gnomepro.com/tsclient/
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.132-translation.patch.bz2
