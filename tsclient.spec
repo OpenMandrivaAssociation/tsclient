@@ -40,17 +40,6 @@ convert -geometry 32x32 tsclient.png %{buildroot}%{_iconsdir}/%{name}.png
 convert -geometry 16x16 tsclient.png %{buildroot}%{_miconsdir}/%{name}.png
 
 # menu
-mkdir -p %{buildroot}/%{_menudir}
-cat > %{buildroot}/%{_menudir}/%{name}  <<EOF
-?package(%name): \
- command="%{_bindir}/%{name}" \
- needs="X11" \
- section="Networking/Remote access" \
- title="Terminal Server Client" \
- longtitle="Frontend for rdesktop" \
- icon="%{name}.png" \
- xdg="true"
-EOF
 
 mkdir -p %{buildroot}%{_datadir}/applnk/Internet/
 cat << EOF > %{buildroot}%{_datadir}/applnk/Internet/tsclient.desktop
@@ -88,7 +77,6 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_datadir}/applnk/Internet/tsclient.desktop
 %{_mandir}/man1/*
 
-%{_menudir}/*
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
