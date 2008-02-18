@@ -1,6 +1,6 @@
 %define	version		0.150
 
-Summary:  	Terminal Server Client is a frontend for rdesktop for the GNOME2 platform
+Summary:  	Frontend for rdesktop for the GNOME2 platform
 Name:     	tsclient
 Version:  	%{version}
 Release:  	%mkrel 1
