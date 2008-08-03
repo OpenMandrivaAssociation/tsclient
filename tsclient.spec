@@ -3,7 +3,7 @@
 Summary:  	Frontend for rdesktop for the GNOME2 platform
 Name:     	tsclient
 Version:  	%{version}
-Release:  	%mkrel 4
+Release:  	%mkrel 5
 License: 	GPL
 Group:		Networking/Remote access
 URL:		http://www.gnomepro.com/tsclient/
