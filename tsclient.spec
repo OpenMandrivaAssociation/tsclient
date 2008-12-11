@@ -14,7 +14,7 @@ Patch0:		%{name}-0.132-translation.patch.bz2
 
 Requires:	rdesktop >= 1.3
 BuildRequires:	gnome-panel-devel
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRequires:	gettext
 
 %description
