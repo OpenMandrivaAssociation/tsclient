@@ -1,19 +1,33 @@
-%define	version		0.150
+%define Werror_cflags %nil
+%define	version		2.0.1
 
 Summary:  	Frontend for rdesktop for the GNOME2 platform
 Name:     	tsclient
 Version:  	%{version}
-Release:  	%mkrel 5
+Release:  	%mkrel 1
 License: 	GPL
 Group:		Networking/Remote access
 URL:		http://www.gnomepro.com/tsclient/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 Source:		%{name}-%{version}.tar.bz2
-Patch0:		%{name}-0.132-translation.patch.bz2
+# reported upstream
+Patch0: icon-names.patch
+# reported upstream
+Patch1: launch-args.patch
+# reported upstream
+Patch2: edit-dialog-crash.patch
+# reported upstream
+Patch3: vnc-password-optional.patch
+# reported upstream
+Patch4: vnc-remote-screen-size.patch
+# NOT reported upstream; there's no simple way to make it support both
+# realvnc and tightvnc
+Patch5: realvnc-args.patch
+Patch6: tsclient-libgnomeui.patch
 
 Requires:	rdesktop >= 1.3
-BuildRequires:	gnome-panel-devel
+BuildRequires:	gnome-panel-devel gnomeui2-devel
 BuildRequires:	imagemagick
 BuildRequires:	gettext
 
@@ -23,7 +37,15 @@ Also support vnc.
 
 %prep
 %setup -q
-#%patch0 -p1
+%patch0 -p1 -b .icon-names
+%patch1 -p1 -b .launch-args
+%patch2 -p1 -b .edit-dialog-crash
+%patch3 -p1 -b .vnc-password
+%patch4 -p1 -b .vnc-remotesize
+%patch5 -p1 -b .realvnc-args
+%patch6 -p1 -b .libgnomeui
+libtoolize --force --copy
+autoreconf
 
 %build
 %configure2_5x
@@ -32,12 +54,6 @@ Also support vnc.
 %install
 rm -rf %{buildroot}
 %makeinstall_std
-
-# icon
-mkdir -p %{buildroot}%{_iconsdir} %{buildroot}%{_miconsdir}
-install -D -m 644       tsclient.png %{buildroot}%{_liconsdir}/%{name}.png
-convert -geometry 32x32 tsclient.png %{buildroot}%{_iconsdir}/%{name}.png
-convert -geometry 16x16 tsclient.png %{buildroot}%{_miconsdir}/%{name}.png
 
 # menu
 
@@ -70,17 +86,14 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %files -f %name.lang
 %defattr(-,root,root)
-%doc AUTHORS NEWS
-%{_bindir}/tsclient
-%{_libdir}/bonobo/servers/*.server
-%{_libexecdir}/tsclient-applet
-%{_datadir}/application-registry/tsclient.applications
-%{_datadir}/applications/tsclient.desktop
-%{_datadir}/pixmaps/*
-%{_datadir}/mime-info/*
+%doc COPYING AUTHORS
+%{_bindir}/*
+%{_datadir}/applications/*.desktop
+%{_sysconfdir}/gconf/schemas/tsc-handlers.schemas
+%{_libdir}/tsclient
+%{_datadir}/gnome/autostart/tsc-autostart.desktop
+%{_datadir}/icons/hicolor/scalable/apps/tsclient.svg
+%{_datadir}/tsclient
+%{_includedir}/tsclient/*
 %{_datadir}/applnk/Internet/tsclient.desktop
-%{_mandir}/man1/*
 
-%{_iconsdir}/%{name}.png
-%{_miconsdir}/%{name}.png
-%{_liconsdir}/%{name}.png
