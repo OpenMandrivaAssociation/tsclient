@@ -43,7 +43,7 @@ tsclient is a frontend that makes it easy to use rdesktop and vncviewer.
 
 %package devel
 Summary: Header files needed to write tsclient plugins
-Group: Development/Libraries
+Group: System/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
