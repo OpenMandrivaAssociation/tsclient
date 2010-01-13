@@ -3,7 +3,7 @@
 Summary: Client for VNC and Windows Terminal Server
 Name: tsclient
 Version: 2.0.2
-Release: %mkrel 2
+Release: %mkrel 3
 URL: http://sourceforge.net/projects/tsclient
 Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 
@@ -21,8 +21,7 @@ BuildRequires: NetworkManager-glib-devel
 BuildRequires: gtk2-devel
 BuildRequires: gnome-panel-devel
 BuildRequires: desktop-file-utils
-BuildRequires: gettext
-BuildRequires: autoconf, automake, libtool, intltool
+BuildRequires: libtool, intltool
 BuildRequires: libglade2-devel
 
 # reported upstream
@@ -36,7 +35,7 @@ Patch4: vnc-remote-screen-size.patch
 # NOT reported upstream; there's no simple way to make it support both
 # realvnc and tightvnc
 Patch5: realvnc-args.patch
-Patch6: tsclient-libgnomeui.patch
+Patch6: tsclient-pkgconfig.patch
 
 %description
 tsclient is a frontend that makes it easy to use rdesktop and vncviewer.
