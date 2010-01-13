@@ -17,7 +17,7 @@ Requires: vnc
 BuildRequires: gnome-desktop-devel
 BuildRequires: libgnomeui2-devel
 BuildRequires: libnotify-devel
-BuildRequires: NetworkManager-glib-devel
+BuildRequires: libnm-glib-devel
 BuildRequires: gtk2-devel
 BuildRequires: gnome-panel-devel
 BuildRequires: desktop-file-utils
