@@ -37,6 +37,7 @@ Patch4: vnc-remote-screen-size.patch
 Patch5: realvnc-args.patch
 Patch6: tsclient-pkgconfig.patch
 Patch7: tsclient-2.0.2-libnotify0.7.patch
+Patch8: tsclient-2.0.2-link.patch
 
 %description
 tsclient is a frontend that makes it easy to use rdesktop and vncviewer.
@@ -59,17 +60,16 @@ develop tsclient plugins.
 %patch5 -p1 -b .realvnc-args
 %patch6 -p1 -b .libgnomeui
 %patch7 -p0 -b .libnotify
+%patch8 -p0 -b .link
 
 %build
 autoreconf -fi
-%configure2_5x
+%configure2_5x --disable-schemas-install
 %make
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-make install DESTDIR=$RPM_BUILD_ROOT
+%makeinstall_std
 
 rm -rf $RPM_BUILD_ROOT/var/scrollkeeper
 
@@ -85,32 +85,8 @@ rm -rf $RPM_BUILD_ROOT/usr/lib/tsclient/plugins/*.{a,la}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/tsc-handlers.schemas >& /dev/null || :
-touch --no-create %{_datadir}/icons/hicolor
-if [ -x /usr/bin/gtk-update-icon-cache ]; then
-  gtk-update-icon-cache -q %{_datadir}/icons/hicolor
-fi
-
-%pre
-if [ "$1" -gt 1 ]; then
-  export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-  gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/tsc-handlers.schemas >& /dev/null || :
-fi
-
 %preun
-if [ "$1" -eq 0 ]; then
-  export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-  gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/tsc-handlers.schemas >& /dev/null || :
-fi
-
-%postun
-touch --no-create %{_datadir}/icons/hicolor
-if [ -x /usr/bin/gtk-update-icon-cache ]; then
-  gtk-update-icon-cache -q %{_datadir}/icons/hicolor
-fi
-
+%preun_uninstall_gconf_schemas tsc-handlers
 
 %files -f %{name}.lang
 %defattr(-,root,root)
