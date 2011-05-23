@@ -3,7 +3,7 @@
 Summary: Client for VNC and Windows Terminal Server
 Name: tsclient
 Version: 2.0.2
-Release: %mkrel 4
+Release: %mkrel 5
 URL: http://sourceforge.net/projects/tsclient
 Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 
