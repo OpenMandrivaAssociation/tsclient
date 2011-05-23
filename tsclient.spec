@@ -36,6 +36,7 @@ Patch4: vnc-remote-screen-size.patch
 # realvnc and tightvnc
 Patch5: realvnc-args.patch
 Patch6: tsclient-pkgconfig.patch
+Patch7: tsclient-2.0.2-libnotify0.7.patch
 
 %description
 tsclient is a frontend that makes it easy to use rdesktop and vncviewer.
@@ -57,11 +58,10 @@ develop tsclient plugins.
 %patch4 -p1 -b .vnc-remotesize
 %patch5 -p1 -b .realvnc-args
 %patch6 -p1 -b .libgnomeui
-libtoolize --force --copy
-autoreconf
+%patch7 -p0 -b .libnotify
 
 %build
-
+autoreconf -fi
 %configure2_5x
 %make
 
