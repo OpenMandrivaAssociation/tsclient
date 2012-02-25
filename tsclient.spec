@@ -23,15 +23,16 @@ Patch6: tsclient-pkgconfig.patch
 Patch7: tsclient-2.0.2-libnotify0.7.patch
 Patch8: tsclient-2.0.2-link.patch
 
-BuildRequires: gnome-desktop-devel
-BuildRequires: libgnomeui2-devel
-BuildRequires: libnotify-devel
-BuildRequires: libnm-glib-devel
-BuildRequires: gtk2-devel
-BuildRequires: gnome-panel-devel
 BuildRequires: desktop-file-utils
-BuildRequires: libtool, intltool
-BuildRequires: libglade2-devel
+BuildRequires: libtool
+BuildRequires: intltool
+BuildRequires: pkgconfig(gnome-desktop-2.0)
+BuildRequires: pkgconfig(gtk+-2.0)
+BuildRequires: pkgconfig(libglade-2.0)
+BuildRequires: pkgconfig(libgnomeui-2.0)
+BuildRequires: pkgconfig(libnm-glib)
+BuildRequires: pkgconfig(libnotify)
+#BuildRequires: gnome-panel-devel
 
 Requires: rdesktop
 Requires: vnc
