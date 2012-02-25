@@ -22,6 +22,7 @@ Patch5: realvnc-args.patch
 Patch6: tsclient-pkgconfig.patch
 Patch7: tsclient-2.0.2-libnotify0.7.patch
 Patch8: tsclient-2.0.2-link.patch
+Patch9:	tsclient-2.0.2_glib_h.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: libtool
@@ -59,6 +60,7 @@ develop tsclient plugins.
 %patch6 -p1 -b .libgnomeui
 %patch7 -p0 -b .libnotify
 %patch8 -p0 -b .link
+%patch9 -p1 -b .glib_h
 
 %build
 autoreconf -fi
