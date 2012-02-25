@@ -3,27 +3,11 @@
 Summary: Client for VNC and Windows Terminal Server
 Name: tsclient
 Version: 2.0.2
-Release: %mkrel 5
-URL: http://sourceforge.net/projects/tsclient
-Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-
+Release: 6
 License: GPL+
 Group: Networking/Remote access
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-
-Requires: rdesktop
-Requires: vnc
-
-BuildRequires: gnome-desktop-devel
-BuildRequires: libgnomeui2-devel
-BuildRequires: libnotify-devel
-BuildRequires: libnm-glib-devel
-BuildRequires: gtk2-devel
-BuildRequires: gnome-panel-devel
-BuildRequires: desktop-file-utils
-BuildRequires: libtool, intltool
-BuildRequires: libglade2-devel
-
+URL: http://sourceforge.net/projects/tsclient
+Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # reported upstream
 Patch0: icon-names.patch
 # reported upstream
@@ -38,6 +22,19 @@ Patch5: realvnc-args.patch
 Patch6: tsclient-pkgconfig.patch
 Patch7: tsclient-2.0.2-libnotify0.7.patch
 Patch8: tsclient-2.0.2-link.patch
+
+BuildRequires: gnome-desktop-devel
+BuildRequires: libgnomeui2-devel
+BuildRequires: libnotify-devel
+BuildRequires: libnm-glib-devel
+BuildRequires: gtk2-devel
+BuildRequires: gnome-panel-devel
+BuildRequires: desktop-file-utils
+BuildRequires: libtool, intltool
+BuildRequires: libglade2-devel
+
+Requires: rdesktop
+Requires: vnc
 
 %description
 tsclient is a frontend that makes it easy to use rdesktop and vncviewer.
@@ -68,28 +65,26 @@ autoreconf -fi
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std
 
-rm -rf $RPM_BUILD_ROOT/var/scrollkeeper
+rm -rf %{buildroot}/var/scrollkeeper
 
-desktop-file-install --vendor tsclient --delete-original      \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications               \
-  --remove-category Application                               \
-  $RPM_BUILD_ROOT%{_datadir}/applications/*
+desktop-file-install \
+	--vendor tsclient \
+	--delete-original \
+	--dir %{buildroot}%{_datadir}/applications \
+	--remove-category Application \
+	%{buildroot}%{_datadir}/applications/*
 
-rm -rf $RPM_BUILD_ROOT/usr/lib/tsclient/plugins/*.{a,la}
+rm -rf %{buildroot}/usr/lib/tsclient/plugins/*.{a,la}
 
 %find_lang %{name}
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %preun
 %preun_uninstall_gconf_schemas tsc-handlers
 
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc COPYING AUTHORS
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
