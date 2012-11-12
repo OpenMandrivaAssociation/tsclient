@@ -1,0 +1,9 @@
+--- src/plugins/default/Makefile.am.link	2011-05-23 18:21:32.000000000 +0200
++++ src/plugins/default/Makefile.am	2011-05-23 18:21:57.000000000 +0200
+@@ -65,5 +65,6 @@
+ 	tsc-vnc-provider.h
+ 
+ libtsc_default_la_LDFLAGS = -module -avoid-version
++libtsc_default_la_LIBADD = $(TSC_LIBS)
+ 
+ EXTRA_DIST = tsc-ssh-askpass

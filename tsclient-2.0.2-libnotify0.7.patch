@@ -1,0 +1,22 @@
+--- src/plugins/default/tsc-rdp-connection.c.notify	2011-05-23 17:57:42.000000000 +0200
++++ src/plugins/default/tsc-rdp-connection.c	2011-05-23 17:57:59.000000000 +0200
+@@ -52,7 +52,7 @@
+ 				   tsc_connection_get_name (TSC_CONNECTION (connection)));
+ 	body = g_strdup_printf (_("You are connected to '%s' in fullscreen mode.  Use Control+Alt+Enter to switch to and from windowed mode."), tsc_connection_get_name (TSC_CONNECTION (connection)));
+ 	
+-	n = notify_notification_new (summary, body, GTK_STOCK_DIALOG_INFO, NULL);
++	n = notify_notification_new (summary, body, GTK_STOCK_DIALOG_INFO);
+ 	g_free (summary);
+ 	g_free (body);
+ 	
+--- src/plugins/default/tsc-vnc-connection.c.notify	2011-05-23 18:16:45.000000000 +0200
++++ src/plugins/default/tsc-vnc-connection.c	2011-05-23 18:16:59.000000000 +0200
+@@ -39,7 +39,7 @@
+ 				   tsc_connection_get_name (TSC_CONNECTION (connection)));
+ 	body = g_strdup_printf (_("You are connected to '%s' in fullscreen mode.  Use F8 to switch to and from windowed mode."), tsc_connection_get_name (TSC_CONNECTION (connection)));
+ 
+-	n = notify_notification_new (summary, body, GTK_STOCK_DIALOG_INFO, NULL);
++	n = notify_notification_new (summary, body, GTK_STOCK_DIALOG_INFO);
+ 	g_free (summary);
+ 	g_free (body);
+ 	
