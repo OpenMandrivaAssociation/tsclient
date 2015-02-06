@@ -3,7 +3,7 @@
 Summary: Client for VNC and Windows Terminal Server
 Name: tsclient
 Version: 2.0.2
-Release: 6
+Release: 7
 License: GPL+
 Group: Networking/Remote access
 URL: http://sourceforge.net/projects/tsclient
