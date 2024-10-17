@@ -6,7 +6,7 @@ Version: 2.0.2
 Release: 7
 License: GPL+
 Group: Networking/Remote access
-URL: http://sourceforge.net/projects/tsclient
+URL: https://sourceforge.net/projects/tsclient
 Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # reported upstream
 Patch0: icon-names.patch
